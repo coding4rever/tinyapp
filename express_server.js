@@ -30,6 +30,6 @@ app.get("/urls", (req, res) => {
   });
 
   app.get("/urls/:id", (req, res) => {
-    const templateVars = { id: req.params.id, longURL: href="#" };
+    const templateVars = { id: req.params.id, longURL: href="http://www.lighthouselabs.ca" };
     res.render("urls_show", templateVars);
   });
