@@ -66,7 +66,8 @@ app.get("/urls", (req, res) => {
     urlDatabase[shortUrl] = longUrl
     console.log(shortUrl)
     console.log(urlDatabase)
-    res.redirect(`/urls/${shortUrl}`);
+    //res.redirect(`/urls/${shortUrl}`);
+    res.redirect("/urls");
 
   });
 
@@ -92,7 +93,7 @@ app.get("/urls", (req, res) => {
   }
   });
 
-  app.post("/urls/:shortURL/delete", (req, res) => {
+  app.post("/urls/:shortUrl/delete", (req, res) => {
     const shortUrl = req.params.shortUrl;
     delete urlDatabase[shortUrl];
     res.redirect('/urls');
@@ -102,5 +103,12 @@ app.get("/urls", (req, res) => {
     console.log(urlDatabase[shortUrl]);
     console.log(urlDatabase[shortUrl]);
   })
+
+  app.post("/urls/:shortUrl/edit", (req, res) => {
+    const shortUrl = req.params.shortUrl;
+    const newURL = req.body.updatedLongURL;
+    urlDatabase[shortUrl] = newURL;
+    res.redirect("/urls"); // Redirect to the index page after editing the URL
+  });
   
   
