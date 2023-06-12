@@ -85,7 +85,12 @@ app.get("/urls", (req, res) => {
   app.get("/u/:shortUrl", (req, res) => {
   const longURL = urlDatabase[req.params.shortUrl];
   //console.log(longURL);
-  res.redirect(longURL);
+  if(longURL){
+    res.redirect(longURL)  
+  }else{
+    res.status(404).send('URL Unavailable')
+  }
+  
   });
   
   
