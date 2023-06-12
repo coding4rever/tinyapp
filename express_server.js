@@ -90,7 +90,15 @@ app.get("/urls", (req, res) => {
   }else{
     res.status(404).send('URL Unavailable')
   }
-  
   });
+
+  app.post("/urls/:shortURL/delete", (req, res) => {
+    const shortUrl = req.params.shortUrl;
+    delete urlDatabase[shortUrl];
+    res.redirect('/urls');
+    console.log(shortUrl);
+   
+    console.log(urlDatabase);
+  })
   
   
