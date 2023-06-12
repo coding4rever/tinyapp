@@ -99,6 +99,8 @@ app.get("/urls", (req, res) => {
     console.log(shortUrl);
    
     console.log(urlDatabase);
+    console.log(urlDatabase[shortUrl]);
+    console.log(urlDatabase[shortUrl]);
   })
   
   
