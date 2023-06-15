@@ -116,10 +116,21 @@ app.get("/urls", (req, res) => {
     urlDatabase[shortUrl] = newURL;
     res.redirect("/urls"); // Redirect to the index page after editing the URL
   });
-  
+
   app.post("/login", (req, res) => {
     const username = req.body.username;
     res.cookie("username", username);
     res.redirect("/urls");
   });
+
+  app.post("/logout", (req, res) => {
+    res.clearCookie("username");
+    res.redirect("/urls");
+  });
+  
+  // app.post("/login", (req, res) => {
+  //   const username = req.body.username;
+  //   res.cookie("username", username);
+  //   res.redirect("/urls");
+  // });
   

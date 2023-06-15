@@ -17,10 +17,22 @@
           <a class="nav-item nav-link" href="/urls">My URLs</a>
           <a class="nav-item nav-link" href="/urls/new">Create New URL</a>  
         </div>
+        <!-- <a class = "nav-item navbar-text"> Welcome, <%= username %></a> 
         <form method="POST" class="nav-item d-flex"  action="/login"> 
             <input type="text" class="form-control d-flex space-around mx-2" name="username" placeholder="username" required>
             <button type="submit" class= "btn btn-outline-dark">Login</button>
-          </form>
+          </form> -->
+          <% if (username) { %>
+            <a class="nav-item navbar-text">Logged in as <%= username %></a>
+            <form method="POST" class="nav-item d-flex" action="/logout">
+              <button type="submit" class="btn btn-primary topnav-right mx-4">Logout</button>
+            </form>
+          <% } else { %>
+            <form method="POST" class="nav-item d-flex" action="/login">
+              <input type="text" class="form-control" name="username" placeholder="Username" required>
+              <button type="submit" class="btn btn-primary topnav-right mx-4">Login</button>
+            </form>
+          <% } %>
       </div>
     </nav>
   </header>
