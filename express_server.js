@@ -92,6 +92,8 @@ app.get("/urls", (req, res) => {
 app.get("/urls/new", (req, res) => {
   //res.render("urls_new");
   res.render("urls_new", { username: req.cookies.username });
+  //res.render("urls_new", { user: req.cookies.user_id });
+  //res.render("urls_new", { user: req.cookies.username });
 });
 
 /*app.get("/urls/:id", (req, res) => {
@@ -100,17 +102,27 @@ app.get("/urls/new", (req, res) => {
   });*/
 
 app.post("/urls", (req, res) => {
-  //console.log(req.body); // Log the POST request body to the console
-  //res.send("Ok"); // Respond with 'Ok' (we will replace this)
+                 //console.log(req.body); // Log the POST request body to the console
+                 //res.send("Ok"); // Respond with 'Ok' (we will replace this)
   const longUrl = req.body.longURL;
-  const shortUrl = generateString(6);
-  //Add to the database
+ const shortUrl = generateString(6);
+  //                    //Add to the database
   urlDatabase[shortUrl] = longUrl;
   console.log(shortUrl);
   console.log(urlDatabase);
   //res.redirect(`/urls/${shortUrl}`);
   res.redirect("/urls");
+
+  // const longURL = req.body.longURL;
+  //   const id =  generateString(6);
+  //   urlDatabase[id] = {
+  //     longURL: longURL,
+  //     userID: req.cookie.user.id
+  //   };
+  //   res.redirect(`/urls/${id}`);
+  // });
 });
+
 
 /*app.get("/urls/:id", (req, res) => {
     const shortUrl = req.params.shortUrl
@@ -152,11 +164,11 @@ app.post("/urls/:shortUrl/edit", (req, res) => {
   res.redirect("/urls"); // Redirect to the index page after editing the URL
 });
 
-app.post("/login", (req, res) => {
-  const username = req.body.username;
-  res.cookie("username", username);
-  res.redirect("/urls");
-});
+// app.post("/login", (req, res) => {
+//   const username = req.body.username;
+//   res.cookie("username", username);
+//   res.redirect("/urls");
+// });
 
 // app.post("/logout", (req, res) => {
 //    res.clearCookie("username");
@@ -176,11 +188,23 @@ app.post("/login", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  res.render("login");
+   res.render("login");
 });
+
+// app.get("/login", (req, res) => {
+//   if(req.cookie.user.id){
+//     res.redirect("/urls")
+//   }
+//   else {
+//     res.render("login")
+//   }
+//    });
+
 app.post("/logout", (req, res) => {
   res.clearCookie("user_id");
-  res.redirect("/urls");
+  //res.redirect("/urls");
+  res.redirect("/login");
+
 });
 
 // app.post("/register", (req, res) => {
