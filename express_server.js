@@ -4,6 +4,8 @@ const cookieParser = require("cookie-parser");
 const PORT = 8080; // default port 8080
 app.set("view engine", "ejs");
 
+<<<<<<< HEAD
+=======
 const users = {
   userRandomID: {
     id: "userRandomID",
@@ -30,13 +32,35 @@ function generateString(length) {
   return result;
 }
 
+>>>>>>> feature/user-registration
 //npx kill-port --port 8080
 // npm install nodemon
 //npm run dev
 
+<<<<<<< HEAD
+const urlDatabase = {
+  b2xVn2: "http://www.lighthouselabs.ca",
+  "9sm5xK": "http://www.google.com",
+};
+
+=======
+>>>>>>> feature/user-registration
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+<<<<<<< HEAD
+// declare all characters
+const characters = "hdfxfdxhjihidfghioehjtgjreio";
+
+function generateString(length) {
+  let result = "";
+  const charactersLength = characters.length;
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+
+  return result;
+=======
 const urlDatabase = {
   b2xVn2: "http://www.lighthouselabs.ca",
   "9sm5xK": "http://www.google.com",
@@ -50,6 +74,7 @@ function getUserByEmail(email) {
     }
   }
   return null;
+>>>>>>> feature/user-registration
 }
 
 app.use(express.urlencoded({ extended: true }));
@@ -69,6 +94,11 @@ app.get("/urls.json", (req, res) => {
 app.get("/hello", (req, res) => {
   res.send("<html><body>Hello <b>World</b></body></html>\n");
 });
+<<<<<<< HEAD
+
+app.get("/urls", (req, res) => {
+  const templateVars = { urls: urlDatabase };
+=======
 
 // app.get("/urls", (req, res) => {
 //     const templateVars = { urls: urlDatabase };
@@ -87,10 +117,16 @@ app.get("/urls", (req, res) => {
   //   templateVars = { urls: urlDatabase, username: null };
   // }
   templateVars = { urls: urlDatabase, currentUser };
+>>>>>>> feature/user-registration
   res.render("urls_index", templateVars);
 });
 
 app.get("/urls/new", (req, res) => {
+<<<<<<< HEAD
+  res.render("urls_new");
+});
+
+=======
   //res.render("urls_new");
   const shortUrl = req.params.shortUrl;
   const userIdCookie = req.cookies.user_id;
@@ -109,6 +145,7 @@ app.get("/urls/new", (req, res) => {
   //res.render("urls_new", { user: req.cookies.username });
 });
 
+>>>>>>> feature/user-registration
 /*app.get("/urls/:id", (req, res) => {
     const templateVars = { id: req.params.id, longURL: href="http://www.lighthouselabs.ca" };
     res.render("urls_show", templateVars);
@@ -119,12 +156,18 @@ app.post("/urls", (req, res) => {
   //res.send("Ok"); // Respond with 'Ok' (we will replace this)
   const longUrl = req.body.longURL;
   const shortUrl = generateString(6);
+<<<<<<< HEAD
+  //Add to the database
+=======
   //                    //Add to the database
+>>>>>>> feature/user-registration
   urlDatabase[shortUrl] = longUrl;
   console.log(shortUrl);
   console.log(urlDatabase);
   //res.redirect(`/urls/${shortUrl}`);
   res.redirect("/urls");
+<<<<<<< HEAD
+=======
 
   // const longURL = req.body.longURL;
   //   const id =  generateString(6);
@@ -134,6 +177,7 @@ app.post("/urls", (req, res) => {
   //   };
   //   res.redirect(`/urls/${id}`);
   // });
+>>>>>>> feature/user-registration
 });
 
 /*app.get("/urls/:id", (req, res) => {
@@ -144,6 +188,9 @@ app.post("/urls", (req, res) => {
 
 app.get("/urls/:shortUrl", (req, res) => {
   const shortUrl = req.params.shortUrl;
+<<<<<<< HEAD
+  const templateVars = { id: shortUrl, longURL: urlDatabase[shortUrl] };
+=======
   const userIdCookie = req.cookies.user_id;
   const currentUser = users[userIdCookie];
   const templateVars = {
@@ -151,6 +198,7 @@ app.get("/urls/:shortUrl", (req, res) => {
     longURL: urlDatabase[shortUrl],
     currentUser,
   };
+>>>>>>> feature/user-registration
   res.render("urls_show", templateVars);
 });
 
@@ -161,6 +209,28 @@ app.get("/u/:shortUrl", (req, res) => {
     res.redirect(longURL);
   } else {
     res.status(404).send("URL Unavailable");
+<<<<<<< HEAD
+  }
+});
+
+app.post("/urls/:shortUrl/delete", (req, res) => {
+  const shortUrl = req.params.shortUrl;
+  delete urlDatabase[shortUrl];
+  res.redirect("/urls");
+  console.log(shortUrl);
+
+  console.log(urlDatabase);
+  console.log(urlDatabase[shortUrl]);
+  console.log(urlDatabase[shortUrl]);
+});
+
+app.post("/urls/:shortUrl/edit", (req, res) => {
+  const shortUrl = req.params.shortUrl;
+  const newURL = req.body.updatedLongURL;
+  urlDatabase[shortUrl] = newURL;
+  res.redirect("/urls"); // Redirect to the index page after editing the URL
+});
+=======
   }
 });
 
@@ -291,3 +361,4 @@ app.post("/register", (req, res) => {
 //   res.cookie("username", username);
 //   res.redirect("/urls");
 // });
+>>>>>>> feature/user-registration
