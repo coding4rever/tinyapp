@@ -21,12 +21,18 @@
           Short URL ID: <a href="/u/<%= id %>"><%= id %></a>
         </p>
         <form method="POST" action="/urls/<%= id %>/edit">
-            <div class="form-group">
-             <h4> <label for="updatedLongURL">Edit:</label> </h4>
-              <input type="text" class="form-control" id="updatedLongURL" name="updatedLongURL" required>
-            </div>
-            <button type="submit" class="btn btn-outline-primary">Submit</button>
-          </form>
+          <div class="form-group">
+            <h4><label for="updatedLongURL">Edit:</label></h4>
+            <input
+              type="text"
+              class="form-control"
+              id="updatedLongURL"
+              name="updatedLongURL"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-outline-primary">Submit</button>
+        </form>
       </div>
       <div class="card-footer text-muted"></div>
     </div>

@@ -194,10 +194,12 @@ app.post("/urls/:shortUrl/edit", (req, res) => {
 //  });
 
 app.post("/login", (req, res) => {
+  const bcrypt = require("bcryptjs");
   const email = req.body.email;
   const password = req.body.password;
   const user = getUserByEmail(email);
-  if (user && user.password === password) {
+  //if (user && user.password === password) {
+  if (user && bcrypt.compareSync(password, user.password)) {
     res.cookie("user_id", user.id);
     res.redirect("/urls");
   } else {
@@ -253,7 +255,9 @@ app.get("/register", (req, res) => {
 // });
 
 app.post("/register", (req, res) => {
+  const bcrypt = require("bcryptjs");
   const { email, password } = req.body;
+  const hashedPassword = bcrypt.hashSync(password, 10);
   const id = generateString(6);
 
   if (getUserByEmail(email)) {
@@ -262,7 +266,8 @@ app.post("/register", (req, res) => {
     users[id] = {
       id: id,
       email: email,
-      password: password,
+      //password: password,
+      password: hashedPassword,
     };
     res.cookie("user_id", id);
     res.redirect("/urls");
