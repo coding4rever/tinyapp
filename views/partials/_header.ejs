@@ -12,11 +12,40 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
+<<<<<<< HEAD
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-item nav-link" href="/urls">My URLs</a>
         <a class="nav-item nav-link" href="/urls/new">Create New URL</a>
       </div>
     </div>
+=======
+    <div
+      class="collapse navbar-collapse d-flex justify-content-between"
+      id="navbarNavAltMarkup"
+    >
+      <div class="navbar-nav space-around">
+        <a class="nav-item nav-link" href="/urls">My URLs</a>
+        <a class="nav-item nav-link" href="/urls/new">Create New URL</a>
+      </div>
+
+      <% if (currentUser) { %>
+      <a class="nav-item navbar-text">Logged in as <%= currentUser.email %></a>
+
+      <form method="POST" class="nav-item d-flex" action="/logout">
+        <button type="submit" class="btn btn-primary topnav-right mx-4">
+          Logout
+        </button>
+      </form>
+      <% } else { %>
+      <!-- <form method="POST" class="nav-item d-flex" action="/login"> -->
+      <!-- <input type="text" class="form-control" name="username" placeholder="Username" required> -->
+      <!-- <input type="text" class="form-control" name="currentUser.email" placeholder="Email" required>
+              <button type="submit" class="btn btn-primary topnav-right mx-4">Login</button>
+            </form> -->
+      <% } %>
+    </div>
+    <!-- <a class="nav-item nav-link" href="/register">register</a> -->
+>>>>>>> feature/user-registration
   </nav>
 </header>
