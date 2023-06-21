@@ -206,7 +206,14 @@ app.post("/login", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  res.render("login");
+  const userIdCookie = req.cookies.user_id;
+  const currentUser = users[userIdCookie];
+  const templateVars = {
+   
+    currentUser,
+  };
+  
+  res.render("login", templateVars);
 });
 
 // app.get("/login", (req, res) => {
